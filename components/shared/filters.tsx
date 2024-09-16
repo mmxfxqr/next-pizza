@@ -12,15 +12,15 @@ interface Props {
 }
 
 export const Filters: React.FC<Props> = ({ className }) => {
-  const { ingredients, loading } = useFilterIngredients();
+  const { ingredients, loading, onAddId, selectedIds } = useFilterIngredients();
   const items = ingredients.map((item) => ({value : String(item.id), text: item.name}))
   return (
     <div className={className}>
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
       {/* Чекбоксы верхние */}
       <div className="flex flex-col gap-4">
-        <FilterCheckbox text="Можно собрать" value="1" />
-        <FilterCheckbox text="Новинки" value="2" />
+        <FilterCheckbox name="qwe"  text="Можно собрать" value="1" />
+        <FilterCheckbox name="asd" text="Новинки" value="2" />
       </div>
       {/* Фильтр по цене */}
       <div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">
@@ -51,6 +51,9 @@ export const Filters: React.FC<Props> = ({ className }) => {
         defaultItems={items.slice(0,6)}
         items={items}
         loading= {loading}
+        onClickCheckbox={onAddId}
+        selectedIds={selectedIds}
+        name= 'ingredients'
       />
     </div>
   );

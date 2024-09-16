@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { FilterChecboxProps, FilterCheckbox } from "./filter-checkbox";
+import { FilterCheckboxProps, FilterCheckbox } from "./filter-checkbox";
 import { Input, Skeleton } from "../ui";
 
-type Item = FilterChecboxProps;
+type Item = FilterCheckboxProps;
 interface Props {
   title: string;
   items: Item[];
@@ -11,9 +11,11 @@ interface Props {
   limit?: number;
   loading?: boolean;
   searchInputPlaceholder?: string;
-  onChange?: (values: string[]) => void;
+  onClickCheckbox?: (id: string) => void;
   defaultValue?: string[];
   className?: string;
+  selectedIds?: Set<string>;
+  name?: string
 }
 
 export const CheckboxFiltersGroup: React.FC<Props> = ({
@@ -24,8 +26,10 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   searchInputPlaceholder = "Поиск...",
   className,
   loading,
-  onChange,
+  onClickCheckbox,
   defaultValue,
+  selectedIds,
+  name
 }) => {
   const [showAll, setShowAll] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
@@ -72,12 +76,14 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
       <div className="flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar">
         {list.map((item, index) => (
           <FilterCheckbox
-            onCheckedChange={(ids) => console.log(ids)}
-            checked={false}
+            onCheckedChange={() => onClickCheckbox?.(item.value)}
+            checked={selectedIds?.has(item.value)}
             key={index}
             value={item.value}
             text={item.text}
             endAdornment={item.endAdornment}
+            name={name}
+            
           />
         ))}
       </div>
@@ -87,7 +93,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
             onClick={() => setShowAll(!showAll)}
             className="text-primary mt-3"
           >
-            {showAll ? "Скрыть" : "+ Показать все"}
+            {showAll ? "- Скрыть" : "+ Показать все"}
           </button>
         </div>
       )}
