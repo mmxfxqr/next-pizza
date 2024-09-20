@@ -9,7 +9,7 @@ import { useCategoryStore } from "@/store/category";
 interface Props {
   title: string;
   items: any[];
-  categotyId: number;
+  categoryId: number;
   className?: string;
   listClassName?: string;
 }
@@ -17,7 +17,7 @@ interface Props {
 export const ProductsGroupList: React.FC<Props> = ({
   title,
   items,
-  categotyId,
+  categoryId,
   className,
   listClassName,
 }) => {
@@ -28,9 +28,9 @@ export const ProductsGroupList: React.FC<Props> = ({
   });
   React.useEffect(() => {
     if(intersection?.isIntersecting){
-      setActiveCategoryId(categotyId)
+      setActiveCategoryId(categoryId)
     }
-  }, [categotyId, intersection?.isIntersecting, title, setActiveCategoryId])
+  }, [categoryId, intersection?.isIntersecting, title, setActiveCategoryId])
   return (
     <div className={cn('mb-10', className)} id={title} ref={intersectionRef}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />
