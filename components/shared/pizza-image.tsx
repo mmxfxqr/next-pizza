@@ -8,7 +8,7 @@ interface Props {
 }
 
 
-export const ProductImage: React.FC<Props> = ({
+export const PizzaImage: React.FC<Props> = ({
   imageUrl,
   size,
   className,
