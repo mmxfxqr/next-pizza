@@ -129,7 +129,7 @@ export const products = [
     categoryId: 2,
   },
   {
-    name: "Дэнвич ветчина и сыр",
+    name: "Сэндвич ветчина и сыр",
     imageUrl:
       "https://media.dodostatic.net/image/r:292x292/11EE796FF0059B799A17F57A9E64C725.webp",
     categoryId: 3,
@@ -147,13 +147,13 @@ export const products = [
     categoryId: 3,
   },
   {
-    name: "Додстер",
+    name: "Донер",
     imageUrl:
       "https://media.dodostatic.net/image/r:292x292/11EE796F96D11392A2F6DD73599921B9.webp",
     categoryId: 3,
   },
   {
-    name: "Острый Додстер 🌶️🌶️",
+    name: "Острый Донер 🌶️🌶️",
     imageUrl:
       "https://media.dodostatic.net/image/r:292x292/11EE796FD3B594068F7A752DF8161D04.webp",
     categoryId: 3,
@@ -161,25 +161,25 @@ export const products = [
   {
     name: "Банановый молочный коктейль",
     imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EEE20B8772A72A9B60CFB20012C185.webp",
+      "https://i.imgur.com/h6WV0j9.png",
     categoryId: 4,
   },
   {
-    name: "Карамельное яблоко молочный коктейль",
+    name: "Клубничный молочный коктейль",
     imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE79702E2A22E693D96133906FB1B8.webp",
+      "https://i.imgur.com/RROzcP5.png",
     categoryId: 4,
   },
   {
     name: "Молочный коктейль с печеньем Орео",
     imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE796FA1F50F8F8111A399E4C1A1E3.webp",
+      "https://i.imgur.com/8B4sXdo.png",
     categoryId: 4,
   },
   {
     name: "Классический молочный коктейль 👶",
     imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE796F93FB126693F96CB1D3E403FB.webp",
+      "https://i.imgur.com/Vh3EWd1.png",
     categoryId: 4,
   },
   {
