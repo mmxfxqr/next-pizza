@@ -41,7 +41,7 @@ model Product {
 
     name     String
     imageUrl String
-
+    desc String?
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
 

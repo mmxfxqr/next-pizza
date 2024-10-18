@@ -111,105 +111,153 @@ export const _ingredients = [
 ].map((obj, index) => ({ id: index + 1, ...obj }));
 export const products = [
   {
-    name: "Омлет с ветчиной и грибами",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp",
+    name: "Чизкейк Нью-Йорк",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/3665dbe7ebd87553a74590b5b6c3d572.jpg",
     categoryId: 2,
+    desc: "Классический чизкейк с кремовой текстурой и нежным вкусом, идеально подходит для любителей сладкого."
   },
   {
-    name: "Омлет с пепперони",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp",
+    name: "Чизкейк Шоколадный",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/9797a0bb817f1710c5a44e2c4a64c357.jpg",
     categoryId: 2,
+    desc: "Шоколадный чизкейк для настоящих гурманов — насыщенный вкус шоколада в каждом кусочке."
   },
   {
-    name: "Кофе Латте",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp",
+    name: "Донат Клубничный",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/379af5878086d7d31367c1e1fba59cdc.jpg",
     categoryId: 2,
+    desc: "Нежный донат с клубничной начинкой, покрытый сладкой глазурью — идеальный десерт для любого времени дня."
   },
   {
-    name: "Сэндвич ветчина и сыр",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE796FF0059B799A17F57A9E64C725.webp",
+    name: "Куриные крылышки Барбекю 9 шт",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/f97c7fc8c945cb9487199a35450c23c5.jpg",
     categoryId: 3,
+    desc: "Хрустящие куриные крылышки, запеченные с ароматным соусом барбекю — отличный выбор для вечеринки."
   },
   {
-    name: "Куриные наггетсы",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D618B5C7EC29350069AE9532C6E.webp",
+    name: "Куриные наггетсы 9 шт",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EEF45EACC4D7EABC10E0A0E0C2C67A.jpg",
     categoryId: 3,
+    desc: "Нежные куриные наггетсы, обжаренные до золотистой корочки — любимое лакомство для детей и взрослых."
   },
   {
-    name: "Картофель из печи с соусом 🌱",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EED646A9CD324C962C6BEA78124F19.webp",
+    name: "Картофель из печи с соусом",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EED646A9CD324C962C6BEA78124F19.webp",
     categoryId: 3,
+    desc: "Ароматный картофель, запеченный до хрустящей корочки, подается с вашим любимым соусом."
   },
   {
-    name: "Донер",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE796F96D11392A2F6DD73599921B9.webp",
+    name: "Чикен Донер",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/d48f86a4109655d21ccee8803aee07bb.jpg",
     categoryId: 3,
+    desc: "Сочный чикен донер, завернутый в свежую лаваш, с овощами и соусом — идеальный перекус на ходу."
   },
   {
-    name: "Острый Донер 🌶️🌶️",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE796FD3B594068F7A752DF8161D04.webp",
+    name: "Итальянский Донер",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/b53a3c7f6f6b112d8cee480c06d8267f.jpg",
     categoryId: 3,
+    desc: "Итальянский донер с ароматными специями и свежими ингредиентами — вкусное сочетание традиций."
   },
   {
-    name: "Банановый молочный коктейль",
-    imageUrl:
-      "https://i.imgur.com/h6WV0j9.png",
+    name: "Шоколадный молочный коктейль",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/b863153fa18cc0d1c7b9958fe4075cd6.jpg",
     categoryId: 4,
+    desc: "Кремовый шоколадный молочный коктейль, который подарит вам наслаждение в каждом глотке."
   },
   {
     name: "Клубничный молочный коктейль",
-    imageUrl:
-      "https://i.imgur.com/RROzcP5.png",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/7f5abe05d646f5fc3d80e1f35f96572d.jpg",
     categoryId: 4,
+    desc: "Освежающий клубничный коктейль, насыщенный вкусом свежих ягод — идеальный летний напиток."
   },
   {
     name: "Молочный коктейль с печеньем Орео",
-    imageUrl:
-      "https://i.imgur.com/8B4sXdo.png",
+    imageUrl: "https://i.imgur.com/8B4sXdo.png",
     categoryId: 4,
+    desc: "Вкусный молочный коктейль с кусочками печенья Орео, который подарит вам сладкое удовольствие."
   },
   {
-    name: "Классический молочный коктейль 👶",
-    imageUrl:
-      "https://i.imgur.com/Vh3EWd1.png",
+    name: "Классический молочный коктейль",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/e18a73e22e054e66273b3330e735dda4.jpg",
     categoryId: 4,
+    desc: "Классический молочный коктейль, приготовленный из свежего молока и мороженого — классика жанра!"
   },
   {
-    name: "Ирландский Капучино",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D61999EBDA59C10E216430A6093.webp",
+    name: "Кофе Ореховый латте",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61B12220AB911FF4FA42EF585D.jpg",
     categoryId: 5,
+    desc: "Нежный латте с ореховым вкусом, который согреет вас в холодный день."
   },
   {
     name: "Кофе Карамельный капучино",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp",
     categoryId: 5,
+    desc: "Ароматный капучино с карамельным вкусом, который станет вашим любимым утренним напитком."
   },
   {
     name: "Кофе Кокосовый латте",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D61B19FA07090EE88B0ED347F42.webp",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61B19FA07090EE88B0ED347F42.webp",
     categoryId: 5,
+    desc: "Экзотический кокосовый латте, который перенесет вас на тропический остров с каждым глотком."
   },
   {
     name: "Кофе Американо",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D61B044583596548A59078BBD33.webp",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61B044583596548A59078BBD33.webp",
     categoryId: 5,
+    desc: "Классический американо для истинных любителей крепкого кофе — просто и вкусно."
   },
   {
-    name: "Кофе Латте",
-    imageUrl:
-      "https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp",
+    name: "Добрый Апельсин",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61AAE50A4CB880D842915C82DC.jpg",
     categoryId: 5,
+    desc: "Освежающий напиток с ярким вкусом апельсина, который зарядит вас энергией на весь день."
+  },
+  {
+    name: "Добрый Лимон-Лайм",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61BAB86255A811FEEA677AD674.jpg",
+    categoryId: 5,
+    desc: "Легкий и освежающий лимонно-лаймовый напиток, идеально подходящий для жарких дней."
+  },
+  {
+    name: "Добрый Кола без сахара",
+    imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D618298DE6D80D47869D156CC28.jpg",
+    categoryId: 5,
+    desc: "Классическая кола без сахара — вкусно и полезно, для тех, кто следит за своим рационом."
+  },
+  {
+    name: "Омлет с беконом",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/e1f3df20ef6d529164cb7567aca1db2c.jpg",
+    categoryId: 2,
+    desc: "Сытный омлет с хрустящим беконом — идеальный завтрак для любителей сытной еды."
+  },
+  {
+    name: "Омлет с томатами",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/b418526d14736e0f1021e85bb3909f94.jpg",
+    categoryId: 2,
+    desc: "Легкий омлет с сочными томатами — отличный выбор для здорового завтрака."
+  },
+  {
+    name: "Омлет с курицей и томатами",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/4bfecce94e812834785ced191fa01b0e.jpg",
+    categoryId: 2,
+    desc: "Сытный омлет с курицей и свежими томатами — идеальный вариант для полноценного завтрака."
+  },
+  {
+    name: "Рогалики с сыром",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/dede7359569c8ad6d5ae1e60890652b5.png",
+    categoryId: 3,
+    desc: "Восхитительные рогалики с плавленым сыром, которые станут отличным перекусом в любое время."
+  },
+  {
+    name: "Рогалики с колбасками",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/4a6bd94e98865df538e1bb13cdebd4b0.png",
+    categoryId: 3,
+    desc: "Хрустящие рогалики с ароматными колбасками — идеальное сочетание для сытного перекуса."
+  },
+  {
+    name: "Рогалики с беконом и халапеньо",
+    imageUrl: "https://storage.yandexcloud.net/pjproduction/images/catalog/thumbs/full/3928ec0a9efb89d8b47589d4df9bb139.png",
+    categoryId: 3,
+    desc: "Острые рогалики с беконом и халапеньо для любителей пикантных вкусов — попробуйте и не пожалеете!"
   },
 ];
