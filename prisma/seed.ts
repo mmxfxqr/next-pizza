@@ -4,26 +4,6 @@ import { _ingredients, categories, products } from "./constants";
 import { Prisma } from "@prisma/client";
 import { connect } from "http2";
 
-// const randomNumber = (min: number, max: number) => {
-//   return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10; //функция чтобы рандомить price, по сути она не нужна, просто лень придумывать цену
-// };
-// const generateProductItem = ({
-//   productId,
-//   pizzaType,
-//   size,
-// }: {
-//   productId: number;
-//   pizzaType?: 1 | 2;
-//   size?: 20 | 30 | 40;
-// }) => {
-//   return {
-//     productId,
-//     price: randomNumber(190, 600),
-//     pizzaType,
-//     size,
-//   } as Prisma.ProductItemUncheckedCreateInput;
-// }; //функция чтобы при создании объекта не прокидывать price, по сути она не нужна, просто лень указывать поле
-
 async function up() {
   await prisma.user.createMany({
     data: [
