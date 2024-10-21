@@ -4,16 +4,10 @@ import { PizzaImage } from "./pizza-image";
 import { Title } from "./title";
 import { Button } from "@/shared/components/ui";
 import { GroupVariants } from "./group-variants";
-import {
-  PizzaSize,
-  PizzaType,
-  pizzaTypes,
-} from "@/shared/constants/pizza";
+import { PizzaSize, PizzaType, pizzaTypes } from "@/shared/constants/pizza";
 import { Ingredient, ProductItem } from "@prisma/client";
 import { IngredientItem } from "./ingredient-item";
-import {
-  getPizzaDetails,
-} from "@/shared/lib";
+import { getPizzaDetails } from "@/shared/lib";
 import { usePizzaOptions } from "@/shared/hooks";
 
 interface Props {
