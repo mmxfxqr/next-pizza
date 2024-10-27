@@ -24,14 +24,19 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   className,
 }) => {
-  const [totalAmount, fetchCartItems, items] = useCartStore((state) => [
-    state.totalAmount,
+  const [totalAmount, fetchCartItems,updateItemQuantity, items ] = useCartStore((state) => [
+  state.totalAmount,
     state.fetchCartItems,
-    state.items
+    state.updateItemQuantity,
+    state.items,
   ]);
   React.useEffect(() => {
     fetchCartItems();
   }, []);
+  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+    const newQuantity  = type === 'plus' ? quantity + 1 : quantity - 1
+    updateItemQuantity(id, newQuantity)
+  }
   return (
     <div className={className}>
       <Sheet>
@@ -39,7 +44,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
         <SheetContent className="flex flex-col justify-between pb-0 bg-[#f8eaea]">
           <SheetHeader>
             <SheetTitle>
-              В корзине <span className="font-bold">3 товара</span>
+              В корзине <span className="font-bold">{items.length === 1? `${items.length} товар`: items.length <= 4 ? `${items.length} товара`: `${items.length} товаров`}</span>
             </SheetTitle>
           </SheetHeader>
           <div className="-mx-6 mt-5 overflow-auto flex-1">
@@ -54,6 +59,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                     name={item.name}
                     price={item.price}
                     quantity={item.quantity}
+                    onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
                     />
                 ))
               }

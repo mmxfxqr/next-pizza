@@ -10,11 +10,11 @@ export const getCartItemDetails = (
   const details = [];
   if (pizzaSize && pizzaType) {
     const typeName = mapPizzaType[pizzaType];
-    details.push(`${typeName} ${pizzaSize} см`);
+    details.push(`${typeName} тесто, ${pizzaSize} см`);
   }
 
   if (ingredients) {
     details.push(ingredients.map((ingredient) => ingredient.name));
   }
-  return details.join(", ");
+  return details.join(', ');
 };
