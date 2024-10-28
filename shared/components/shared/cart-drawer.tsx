@@ -24,19 +24,30 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   className,
 }) => {
-  const [totalAmount, fetchCartItems,updateItemQuantity, items ] = useCartStore((state) => [
-  state.totalAmount,
+  const [
+    totalAmount,
+    items,
+    fetchCartItems,
+    updateItemQuantity,
+    removeCartItem,
+  ] = useCartStore((state) => [
+    state.totalAmount,
+    state.items,
     state.fetchCartItems,
     state.updateItemQuantity,
-    state.items,
+    state.removeCartItem,
   ]);
   React.useEffect(() => {
     fetchCartItems();
   }, []);
-  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
-    const newQuantity  = type === 'plus' ? quantity + 1 : quantity - 1
-    updateItemQuantity(id, newQuantity)
-  }
+  const onClickCountButton = (
+    id: number,
+    quantity: number,
+    type: "plus" | "minus"
+  ) => {
+    const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  };
   return (
     <div className={className}>
       <Sheet>
@@ -44,25 +55,41 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
         <SheetContent className="flex flex-col justify-between pb-0 bg-[#f8eaea]">
           <SheetHeader>
             <SheetTitle>
-              В корзине <span className="font-bold">{items.length === 1? `${items.length} товар`: items.length <= 4 ? `${items.length} товара`: `${items.length} товаров`}</span>
+              В корзине{" "}
+              <span className="font-bold">
+                {items.length === 1
+                  ? `${items.length} товар`
+                  : items.length <= 4
+                  ? `${items.length} товара`
+                  : `${items.length} товаров`}
+              </span>
             </SheetTitle>
           </SheetHeader>
           <div className="-mx-6 mt-5 overflow-auto flex-1">
             <div className="mb-2">
-              {
-                items.map((item) => (
-                  <CartDrawerItem
-                    key={item.id}
-                    id={item.id}
-                    imageUrl={item.imageUrl}
-                    details={item.pizzaType && item.pizzaSize ? getCartItemDetails( item.ingredients,item.pizzaType as PizzaType, item.pizzaSize as PizzaSize): ''}
-                    name={item.name}
-                    price={item.price}
-                    quantity={item.quantity}
-                    onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
-                    />
-                ))
-              }
+              {items.map((item) => (
+                <CartDrawerItem
+                  key={item.id}
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  details={
+                    item.pizzaType && item.pizzaSize
+                      ? getCartItemDetails(
+                          item.ingredients,
+                          item.pizzaType as PizzaType,
+                          item.pizzaSize as PizzaSize
+                        )
+                      : ""
+                  }
+                  name={item.name}
+                  price={item.price}
+                  quantity={item.quantity}
+                  onClickCountButton={(type) =>
+                    onClickCountButton(item.id, item.quantity, type)
+                  }
+                  onClickRemove={() => removeCartItem(item.id)}
+                />
+              ))}
             </div>
           </div>
 
