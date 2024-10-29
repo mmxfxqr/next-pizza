@@ -9,6 +9,8 @@ import { SearchInput } from "./search-input";
 import { CartButton } from "./cart-button";
 interface Props {
   className?: string;
+  totalPrice: number;
+  productCount: number;
 }
 
 export const Header: React.FC<Props> = ({ className }) => {
@@ -36,7 +38,7 @@ export const Header: React.FC<Props> = ({ className }) => {
             Войти
           </Button>
           <div>
-            <CartButton/>
+            <CartButton />
           </div>
         </div>
       </Container>

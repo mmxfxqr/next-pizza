@@ -30,7 +30,7 @@ export default async function ProductPage({
             mollitia excepturi dolor.
           </p>
           <GroupVariants
-          selectedValue="1"
+          value="1"
           items={[
             {
               name: 'Маленькая',
