@@ -24,7 +24,7 @@ interface ReturnProps extends Filters {
   setSizes: (value: string) => void;
   setSelectedIngredients: (value: string) => void;
 }
-export const useFilters = () => {
+export const useFilters = (): ReturnProps => {
   const searchParams = useSearchParams() as unknown as Map<
     keyof QueryFilters,
     string
