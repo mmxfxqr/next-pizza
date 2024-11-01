@@ -72,7 +72,6 @@ export interface CartState {
     try {
       set({ loading: true, error: false });
       const data = await Api.cart.addCartItem(values);
-      console.log('Cart data:', data);
       set(getCartDetails(data));
     } catch (error) {
       console.error(error);
