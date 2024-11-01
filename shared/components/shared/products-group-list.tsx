@@ -1,10 +1,11 @@
-'use client'
+"use client";
 import React from "react";
 import { Title } from "./title";
 import { cn } from "@/shared/lib/utils";
 import { ProductCard } from "./product-card";
 import { useIntersection } from "react-use";
 import { useCategoryStore } from "@/shared/store/category";
+import { ProductWithRelations } from "@/@types/prisma";
 
 interface Props {
   title: string;
@@ -21,28 +22,32 @@ export const ProductsGroupList: React.FC<Props> = ({
   className,
   listClassName,
 }) => {
-  const setActiveCategoryId = useCategoryStore((state) => state.setActiveId)
+  const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
   const intersectionRef = React.useRef(null);
   const intersection = useIntersection(intersectionRef, {
     threshold: 0.4,
   });
   React.useEffect(() => {
-    if(intersection?.isIntersecting){
-      setActiveCategoryId(categoryId)
+    if (intersection?.isIntersecting) {
+      setActiveCategoryId(categoryId);
     }
-  }, [categoryId, intersection?.isIntersecting, title, setActiveCategoryId])
+  }, [categoryId, intersection?.isIntersecting, title, setActiveCategoryId]);
   return (
-    <div className={cn('mb-10 pb-10', className)} id={title} ref={intersectionRef}>
+    <div
+      className={cn("mb-10 pb-10", className)}
+      id={title}
+      ref={intersectionRef}
+    >
       <Title text={title} size="lg" className="font-extrabold mb-5" />
       <div className={cn("grid grid-cols-3 gap-[50px]", listClassName)}>
-        {items.map((item) => (
+        {items.map((product) => (
           <ProductCard
-            id={item.id}
-            key={item.id }
-            name={item.name}
-            imageUrl={item.imageUrl}
-            price={item.items[0].price}
-            desc={item.desc}
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            imageUrl={product.imageUrl}
+            price={product.items[0].price}
+            desc={product.desc}
           />
         ))}
       </div>

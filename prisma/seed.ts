@@ -110,7 +110,7 @@ async function up() {
       imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D614CBE0530B7234B6D7A6E5F8E.jpg",
       categoryId: 1,
       ingredients: {
-        connect: _ingredients.slice(30, 40),
+        connect: _ingredients.slice(0, 40),
       },
       desc: "Пицца с двойной порцией куриного мяса, которая подарит вам насыщенный вкус и удовольствие."
     },
@@ -122,7 +122,7 @@ async function up() {
       imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D610A62D78598406363A9A8AD65.jpg",
       categoryId: 1,
       ingredients: {
-        connect: _ingredients.slice(25, 37),
+        connect: _ingredients.slice(0, 40),
       },
       desc: "Классическая пицца с пепперони, которая никогда не выйдет из моды — всегда вкусно!"
     },

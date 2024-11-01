@@ -10,7 +10,7 @@ interface Props {
   price: number;
   imageUrl: string;
   className?: string;
-  desc?: string;
+  desc?: string ;
 }
 
 export const ProductCard: React.FC<Props> = ({
