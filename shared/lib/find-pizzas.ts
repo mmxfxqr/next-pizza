@@ -24,6 +24,9 @@ export const findPizzas = async (params: GetSearchParams) => {
   const categories = await prisma.category.findMany({
     include: {
       products: {
+         orderBy: {
+          id: 'desc',
+        },
         where: {
           ingredients: ingredientsIdArr
             ? {
