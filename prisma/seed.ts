@@ -226,7 +226,6 @@ async function up() {
     { productId: 23, price: 210 },
     { productId: 24, price: 150 },
     { productId: 25, price: 160 },
-    { productId: 26, price: 170 },
     ],
   });
   await prisma.cart.createMany({
