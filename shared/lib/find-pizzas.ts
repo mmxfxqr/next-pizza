@@ -68,23 +68,7 @@ export const findPizzas = async (params: GetSearchParams) => {
       },
     },
   });
-  categories.forEach((category) => {
-    console.log(`Category: ${category.name}`);
-    category.products.forEach((product) => {
-      console.log(`Product: ${product.name}`);
-      console.log("Ingredients:", product.ingredients.map(ingredient => ({
-        id: ingredient.id,
-        name: ingredient.name,
-        price: ingredient.price
-      })));
-      console.log("Items:", product.items.map(item => ({
-        id: item.id,
-        size: item.size,
-        pizzaType: item.pizzaType,
-        price: item.price
-      })));
-    });
-  });
+ 
   // Сортировка продуктов по минимальной цене их элементов
   categories.forEach((category) => {
     category.products.sort((a, b) => {

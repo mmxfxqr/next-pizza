@@ -11,6 +11,7 @@ interface Props {
   onSubmit: VoidFunction;
   className?: string;
   loading?: boolean;
+  isPage: boolean;
 }
 
 export const ChooseProductForm: React.FC<Props> = ({
@@ -21,6 +22,7 @@ export const ChooseProductForm: React.FC<Props> = ({
   price,
   description,
   loading,
+  isPage
 }) => {
   return (
     <div className={cn(className, "flex flex-col justify-between ")}>
@@ -43,7 +45,7 @@ export const ChooseProductForm: React.FC<Props> = ({
         <Button
           loading={loading}
           onClick={() => onSubmit()}
-          className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10"
+          className={isPage ? "block w-[50%] h-[55px] px-10 mx-[auto] text-base rounded-[18px] mt-10 " : "h-[55px] px-10 text-base rounded-[18px] w-full mt-10"}
         >
           Добавить в корзину за {price} ₽
         </Button>
