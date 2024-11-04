@@ -55,7 +55,12 @@ export async function POST(req: NextRequest) {
       where: {
         cartId: userCart.id,
         productItemId: data.productItemId,
-        ingredients: { every: { id: { in: data.ingredients } } },
+        ingredients: data.ingredients && data.ingredients.length > 0 
+          ? { every: { id: { in: data.ingredients } } }
+          : { none: {} }, 
+      },
+      include: {
+        ingredients: true,
       },
     });
     //если был найден товар, делаем +1
