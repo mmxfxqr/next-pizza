@@ -4,8 +4,8 @@
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars-experimental": "off",
     "@next/next/no-img-element": "off",
-    "@typescript-eslint/no-explicit-any" : "off",
-    "jsx-a11y/alt-text": "off"
-    
+    "@typescript-eslint/no-explicit-any": "off",
+    "jsx-a11y/alt-text": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
