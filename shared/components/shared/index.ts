@@ -14,4 +14,6 @@ export { CartButton } from "./cart-button";
 export { CartDrawer } from "./cart-drawer";
 export { ProductForm } from "./product-form";
 export {WhiteBlock} from "./white-block";
+export {CheckoutSidebarItem} from "./checkout-sidebar-item";
+export {CheckoutCartOrderItem} from "./checkout-cart-order-item"
 export * from "./modals";

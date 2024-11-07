@@ -1,5 +1,12 @@
-import { Container, Title, WhiteBlock } from "@/shared/components/shared";
-import { Input, Textarea } from "@/shared/components/ui";
+import {
+  CheckoutCartOrderItem,
+  CheckoutSidebarItem,
+  Container,
+  Title,
+  WhiteBlock,
+} from "@/shared/components/shared";
+import { Button, Input, Textarea } from "@/shared/components/ui";
+import { ArrowRight, Pizza, Truck } from "lucide-react";
 
 export default function CheckoutPage() {
   return (
@@ -11,7 +18,12 @@ export default function CheckoutPage() {
       <div className="flex gap-10">
         {/* Левая часть  */}
         <div className="flex flex-col gap-10 flex-1 mb-20">
-          <WhiteBlock title="1. Корзина">12314</WhiteBlock>
+          <WhiteBlock title="1. Корзина">
+           <div className="flex flex-col gap-5">
+           <CheckoutCartOrderItem id={1} imageUrl={"https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.jpg"} details={"Сытная пицца с курицей и грибами, запеченная под слоем расплавленного сыра — идеальный выбор для гурманов."} name={"Пизда негра"} price={420} quantity={3}  />
+           <CheckoutCartOrderItem id={2} imageUrl={"https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.jpg"} details={"Сытная пицца с курицей и грибами, запеченная под слоем расплавленного сыра — идеальный выбор для гурманов."} name={"Пизда негра"} price={420} quantity={3}  />
+           </div>
+          </WhiteBlock>
           <WhiteBlock title="2. Персональные данные">
             <div className="grid grid-cols-2 gap-5">
               <Input name="fistName" placeholder="Имя" className="text-base" />
@@ -47,13 +59,31 @@ export default function CheckoutPage() {
               <span className="text-[34px] font-extrabold">3550 ₽</span>
             </div>
 
-            <div className="flex my-4">
-              <span className="flex flex-1 text-lg text-neutral-500">
-                Стоимость товаров:
-                <div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2"></div>
-              </span>
-              <span className="font-bold text-lg">3550 ₽</span>
-            </div>
+            <CheckoutSidebarItem
+              title={
+                <div className="flex items-center">
+                  <Pizza size={20} className="mr-2 text-gray-300" />
+                  Стоимость товаров:
+                </div>
+              }
+              value="3550"
+            />
+            <CheckoutSidebarItem
+              title={
+                <div className="flex items-center">
+                  <Truck size={20} className="mr-2 text-gray-300" />
+                  Доставка:
+                </div>
+              }
+              value="120"
+            />
+            <Button
+              type="submit"
+              className="w-full h-14 rounded-2xl mt-6 font-bold text-base"
+            >
+              Перейти к оплате
+              <ArrowRight className="w-5 ml-2" />
+            </Button>
           </WhiteBlock>
         </div>
       </div>
