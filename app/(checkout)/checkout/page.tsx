@@ -20,8 +20,7 @@ export default function CheckoutPage() {
         <div className="flex flex-col gap-10 flex-1 mb-20">
           <WhiteBlock title="1. Корзина">
            <div className="flex flex-col gap-5">
-           <CheckoutCartOrderItem id={1} imageUrl={"https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.jpg"} details={"Сытная пицца с курицей и грибами, запеченная под слоем расплавленного сыра — идеальный выбор для гурманов."} name={"Пизда негра"} price={420} quantity={3}  />
-           <CheckoutCartOrderItem id={2} imageUrl={"https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.jpg"} details={"Сытная пицца с курицей и грибами, запеченная под слоем расплавленного сыра — идеальный выбор для гурманов."} name={"Пизда негра"} price={420} quantity={3}  />
+           
            </div>
           </WhiteBlock>
           <WhiteBlock title="2. Персональные данные">
