@@ -1,3 +1,4 @@
+"use client";
 import {
   CheckoutCartOrderItem,
   CheckoutSidebarItem,
@@ -6,9 +7,22 @@ import {
   WhiteBlock,
 } from "@/shared/components/shared";
 import { Button, Input, Textarea } from "@/shared/components/ui";
+import { PizzaSize, PizzaType } from "@/shared/constants/pizza";
+import { useCart } from "@/shared/hooks";
+import { getCartItemDetails } from "@/shared/lib";
 import { ArrowRight, Pizza, Truck } from "lucide-react";
 
 export default function CheckoutPage() {
+  const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
+  const deliveryPrice = 120;
+  const onClickCountButton = (
+    id: number,
+    quantity: number,
+    type: "plus" | "minus"
+  ) => {
+    const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  };
   return (
     <Container className="mt-10">
       <Title
@@ -19,9 +33,27 @@ export default function CheckoutPage() {
         {/* Левая часть  */}
         <div className="flex flex-col gap-10 flex-1 mb-20">
           <WhiteBlock title="1. Корзина">
-           <div className="flex flex-col gap-5">
-           
-           </div>
+            <div className="flex flex-col gap-5">
+              {items.map((item) => (
+                <CheckoutCartOrderItem
+                  key={item.id}
+                  id={item.id}
+                  imageUrl={item.imageUrl}
+                  details={getCartItemDetails(
+                    item.ingredients,
+                    item.pizzaType as PizzaType,
+                    item.pizzaSize as PizzaSize
+                  )}
+                  name={item.name}
+                  price={item.price}
+                  quantity={item.quantity}
+                  onClickCountButton={(type) =>
+                    onClickCountButton(item.id, item.quantity, type)
+                  }
+                  onClickRemove={() => removeCartItem(item.id)}
+                />
+              ))}
+            </div>
           </WhiteBlock>
           <WhiteBlock title="2. Персональные данные">
             <div className="grid grid-cols-2 gap-5">
@@ -55,7 +87,9 @@ export default function CheckoutPage() {
           <WhiteBlock className="p-6 sticky top-4">
             <div className="flex flex-col gap-1">
               <span className="text-xl">Итого:</span>
-              <span className="text-[34px] font-extrabold">3550 ₽</span>
+              <span className="text-[34px] font-extrabold">
+                {totalAmount + deliveryPrice} ₽
+              </span>
             </div>
 
             <CheckoutSidebarItem
@@ -65,7 +99,7 @@ export default function CheckoutPage() {
                   Стоимость товаров:
                 </div>
               }
-              value="3550"
+              value={String(totalAmount)}
             />
             <CheckoutSidebarItem
               title={
@@ -74,7 +108,7 @@ export default function CheckoutPage() {
                   Доставка:
                 </div>
               }
-              value="120"
+              value={String(deliveryPrice)}
             />
             <Button
               type="submit"
