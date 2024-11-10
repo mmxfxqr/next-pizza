@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   Sheet,
@@ -23,6 +23,7 @@ import { useCart } from "@/shared/hooks";
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
+  const [redirecting, setRedirecting] = React.useState(false)
   const onClickCountButton = (
     id: number,
     quantity: number,
@@ -120,7 +121,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                       <span className="font-bold text-lg">{totalAmount} ₽</span>
                     </div>
                     <Link href="/checkout">
-                      <Button type="submit" className="w-full h-12 text-base">
+                      <Button onClick={() => setRedirecting(true)} loading={redirecting} type="submit" className="w-full h-12 text-base">
                         Оформить заказ
                         <ArrowRight className="w-5 ml-2" />
                       </Button>

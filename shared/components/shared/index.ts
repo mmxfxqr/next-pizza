@@ -17,4 +17,5 @@ export { WhiteBlock } from "./white-block";
 export { CheckoutSidebarItem } from "./checkout-sidebar-item";
 export { CheckoutCartOrderItem } from "./checkout-cart-order-item";
 export { CheckoutCartOrderItemSkeleton } from "./checkout-cart-order-item-skeleton";
+export {CheckoutSidebar} from "./checkout-sidebar"
 export * from "./modals";
