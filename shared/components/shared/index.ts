@@ -18,4 +18,5 @@ export { CheckoutSidebarItem } from "./checkout-sidebar-item";
 export { CheckoutCartOrderItem } from "./checkout-cart-order-item";
 export { CheckoutCartOrderItemSkeleton } from "./checkout-cart-order-item-skeleton";
 export {CheckoutSidebar} from "./checkout-sidebar"
+export {RequiredSymbol} from "./required-symbol"
 export * from "./modals";
