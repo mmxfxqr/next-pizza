@@ -1,4 +1,6 @@
 "use client";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   CheckoutCartOrderItem,
   CheckoutSidebar,
@@ -6,12 +8,25 @@ import {
   Title,
   WhiteBlock,
 } from "@/shared/components/shared";
+import { FormInput } from "@/shared/components/shared/form";
 import {  Input, Textarea } from "@/shared/components/ui";
 import { PizzaSize, PizzaType } from "@/shared/constants/pizza";
 import { useCart } from "@/shared/hooks";
 import { getCartItemDetails } from "@/shared/lib";
+
 export default function CheckoutPage() {
   const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
+  const form = useForm({
+    resolver: zodResolver(),
+    defaultValues: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      phone: '',
+      address: '',
+      comment: '',
+    }
+  });
   const onClickCountButton = (
     id: number,
     quantity: number,
@@ -55,7 +70,7 @@ export default function CheckoutPage() {
           </WhiteBlock>
           <WhiteBlock title="2. Персональные данные">
             <div className="grid grid-cols-2 gap-5">
-              <Input name="fistName" placeholder="Имя" className="text-base" />
+              <FormInput name="fistName" placeholder="Имя" className="text-base" />
               <Input
                 name="lastName"
                 placeholder="Фамилия"
