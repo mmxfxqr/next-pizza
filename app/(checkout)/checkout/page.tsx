@@ -1,33 +1,36 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  CheckoutCartOrderItem,
-  CheckoutSidebar,
-  Container,
-  Title,
-  WhiteBlock,
-} from "@/shared/components/shared";
-import { FormInput } from "@/shared/components/shared/form";
-import {  Input, Textarea } from "@/shared/components/ui";
-import { PizzaSize, PizzaType } from "@/shared/constants/pizza";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckoutSidebar, Container, Title } from "@/shared/components/shared";
 import { useCart } from "@/shared/hooks";
-import { getCartItemDetails } from "@/shared/lib";
-import { CheckoutAddressFrom, CheckoutCart, CheckoutPersonalData } from "@/shared/components/shared/checkout";
+import {
+  CheckoutAddressFrom,
+  CheckoutCart,
+  CheckoutPersonalData,
+} from "@/shared/components/shared/checkout";
+import {
+  checkoutFormSchema,
+  TCheckoutFormFields,
+} from "@/shared/components/shared/checkout/checkout-form-schema";
 
 export default function CheckoutPage() {
   const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
-  const form = useForm({
-    resolver: zodResolver(),
+  const form = useForm<TCheckoutFormFields>({
+    resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      phone: '',
-      address: '',
-      comment: '',
-    }
+      email: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      address: "",
+      comment: "",
+    },
   });
+
+  const onSubmit = (data: TCheckoutFormFields) => {
+    console.log(data)
+  }
+
   const onClickCountButton = (
     id: number,
     quantity: number,
@@ -42,18 +45,26 @@ export default function CheckoutPage() {
         text="Оформление заказа"
         className="font-extrabold mb-8 text-[36px]"
       />
-      <div className="flex gap-10">
-        {/* Левая часть  */}
-        <div className="flex flex-col gap-10 flex-1 mb-20">
-          <CheckoutCart items={items} onClickCountButton={onClickCountButton} removeCartItem={removeCartItem} />
-          <CheckoutPersonalData />
-          <CheckoutAddressFrom/>
+      <FormProvider {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="flex gap-10">
+          {/* Левая часть  */}
+          <div className="flex flex-col gap-10 flex-1 mb-20">
+            <CheckoutCart
+              items={items}
+              onClickCountButton={onClickCountButton}
+              removeCartItem={removeCartItem}
+            />
+            <CheckoutPersonalData />
+            <CheckoutAddressFrom />
+          </div>
+          {/* Правая часть  */}
+          <div className="w-[450px]">
+            <CheckoutSidebar totalAmount={totalAmount} />
+          </div>
         </div>
-        {/* Правая часть  */}
-        <div className="w-[450px]">
-          <CheckoutSidebar totalAmount={totalAmount} />
-        </div>
-      </div>
+        </form>
+      </FormProvider>
     </Container>
   );
 }
