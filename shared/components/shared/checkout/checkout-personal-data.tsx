@@ -1,3 +1,4 @@
+import { useFormContext } from "react-hook-form";
 import { Input } from "../../ui";
 import { FormInput } from "../form";
 import { WhiteBlock } from "../white-block";
@@ -6,12 +7,12 @@ interface Props {
 }
 export const CheckoutPersonalData: React.FC<Props> = ({ className }) => {
   return (
-    <WhiteBlock title="2. Персональные данные">
+    <WhiteBlock title="2. Персональные данные" className={className}>
       <div className="grid grid-cols-2 gap-5">
-        <FormInput name="fistName" placeholder="Имя" className="text-base" />
-        <Input name="lastName" placeholder="Фамилия" className="text-base" />
-        <Input name="email" placeholder="E-Mail" className="text-base" />
-        <Input name="phone" placeholder="Телефон" className="text-base" />
+        <FormInput name="firstName" placeholder="Имя" className="text-base" />
+        <FormInput name="lastName" placeholder="Фамилия" className="text-base" />
+        <FormInput name="email" placeholder="E-Mail" className="text-base" />
+        <FormInput name="phone" placeholder="Телефон" className="text-base" />
       </div>
     </WhiteBlock>
   );
