@@ -17,7 +17,10 @@ export { WhiteBlock } from "./white-block";
 export { CheckoutSidebarItem } from "./checkout-sidebar-item";
 export { CheckoutCartOrderItem } from "./checkout-cart-order-item";
 export { CheckoutCartOrderItemSkeleton } from "./checkout-cart-order-item-skeleton";
+export { ErrorText } from './error-text';
 export {CheckoutSidebar} from "./checkout-sidebar"
 export {RequiredSymbol} from "./required-symbol"
 export {ClearButton} from "./clear-button"
 export * from "./modals";
+export * from "./checkout";
+export * from "./form";

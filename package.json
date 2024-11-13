@@ -38,6 +38,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1",
+    "react-imask": "^7.6.1",
     "react-use": "^17.5.1",
     "shadcn-ui": "^0.9.3",
     "tailwind-merge": "^2.5.2",
