@@ -12,7 +12,7 @@ import {
 } from "@/shared/components";
 import { checkoutFormSchema, TCheckoutFormFields } from "@/shared/constants";
 export default function CheckoutPage() {
-  const { totalAmount, items, updateItemQuantity, removeCartItem } = useCart();
+  const { totalAmount, items, updateItemQuantity, removeCartItem, loading } = useCart();
   const form = useForm<TCheckoutFormFields>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
@@ -52,13 +52,14 @@ export default function CheckoutPage() {
                 items={items}
                 onClickCountButton={onClickCountButton}
                 removeCartItem={removeCartItem}
+                loading={loading}
               />
-              <CheckoutPersonalData />
-              <CheckoutAddressFrom />
+              <CheckoutPersonalData className={ loading ? "opacity-40 pointer-events-none" : ''} />
+              <CheckoutAddressFrom className={ loading ? "opacity-40 pointer-events-none" : ''} />
             </div>
             {/* Правая часть  */}
             <div className="w-[450px]">
-              <CheckoutSidebar totalAmount={totalAmount} />
+              <CheckoutSidebar totalAmount={totalAmount} loading={loading} />
             </div>
           </div>
         </form>
@@ -66,3 +67,4 @@ export default function CheckoutPage() {
     </Container>
   );
 }
+ 

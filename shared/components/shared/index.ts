@@ -21,6 +21,7 @@ export { ErrorText } from './error-text';
 export {CheckoutSidebar} from "./checkout-sidebar"
 export {RequiredSymbol} from "./required-symbol"
 export {ClearButton} from "./clear-button"
+export {CheckoutItemSkeleton} from "./checkout-item-skeleton"
 export * from "./modals";
 export * from "./checkout";
 export * from "./form";

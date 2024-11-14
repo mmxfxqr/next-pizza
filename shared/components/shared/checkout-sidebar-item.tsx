@@ -3,7 +3,7 @@ import React from "react";
 
 interface Props {
   title?: React.ReactNode;
-  value?: string;
+  value?: React.ReactNode;
   className?: string;
 }
 
@@ -14,7 +14,7 @@ export const CheckoutSidebarItem: React.FC<Props> = ({ className,title,value }) 
       {title}
       <div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2"></div>
     </span>
-    <span className="font-bold text-lg">{value} ₽</span>
+    <span className="font-bold text-lg flex">{value} ₽</span>
   </div>
   );
 };
