@@ -51,7 +51,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
         type="submit"
         className="w-full h-14 rounded-2xl mt-6 font-bold text-base"
       >
-        Перейти к оплате
+        Перейти к оформлению заказа
         <ArrowRight className="w-5 ml-2" />
       </Button>
     </WhiteBlock>
