@@ -13,7 +13,7 @@ export const AdressInput: React.FC<Props> = ({ onChange }) => {
   return (
     <div
       className={cn(
-        "relative flex h-9 w-full items-center rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-within:ring-1 focus-within:ring-ring h-11"
+        "relative flex  w-full items-center rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-within:ring-1 focus-within:ring-ring h-11"
       )}
     >
       <AddressSuggestions
