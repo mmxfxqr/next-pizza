@@ -1,7 +1,9 @@
 "use server";
 
 import { prisma } from "@/prisma/prisma-client";
+import { PayOrderTemplate } from "@/shared/components";
 import { TCheckoutFormFields } from "@/shared/constants";
+import { sendEmail } from "@/shared/lib";
 import { OrderStatus } from "@prisma/client";
 import { cookies } from "next/headers";
 
@@ -67,6 +69,16 @@ export async function createOrder(data: TCheckoutFormFields) {
         cartId: userCart.id,
       },
     });
-    
-  } catch (error) {}
+    await sendEmail(
+      data.email,
+      "Taxizza Pizza | Оплатите заказ №" + order.id,
+      PayOrderTemplate({
+        orderId: order.id,
+        totalAmount: order.totalAmount,
+        paymentUrl: "https://resend.com/docs/send-with-nextjs",
+      })
+    );
+  } catch (error) {
+    console.log('[CREATE ORDER] Server error', error);
+  }
 }
