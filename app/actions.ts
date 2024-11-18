@@ -1,7 +1,9 @@
 "use server";
 
 import { prisma } from "@/prisma/prisma-client";
+import { OrderDetailsTemplate } from "@/shared/components";
 import { TCheckoutFormFields } from "@/shared/constants";
+import { sendEmail } from "@/shared/lib";
 import { OrderStatus } from "@prisma/client";
 import { cookies } from "next/headers";
 
@@ -73,7 +75,21 @@ export async function createOrder(data: TCheckoutFormFields) {
         cartId: userCart.id,
       },
     });
-
+    await sendEmail(
+      data.email,
+      "Taxizza Pizza | Подтверждение заказа №" + order.id,
+      OrderDetailsTemplate({
+        orderId: order.id,
+        fullName: order.fullName,
+        email: order.email,
+        phone: order.phone,
+        address: order.address,
+        comment: order.comment || "Нет комментария",
+        totalAmount: order.totalAmount,
+        items: JSON.parse(order.items?.toString() ?? '[]')
+      })
+    );
+    
     // Возвращаем URL страницы с информацией о заказе
     return `/order/${order.id}`;
   } catch (error) {

@@ -1,83 +1,136 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   orderId: number;
+  fullName: string;
+  email: string;
+  phone: string;
+  address: string;
+  comment: string;
   totalAmount: number;
-  paymentUrl: string;
+  items: Array<any>;
 }
 
-export const PayOrderTemplate: React.FC<Props> = ({
+export const OrderDetailsTemplate: React.FC<Props> = ({
   orderId,
+  fullName,
+  email,
+  phone,
+  address,
+  comment,
   totalAmount,
-  paymentUrl,
+  items,
 }) => (
   <div
     style={{
       fontFamily: '"Arial", sans-serif',
-      lineHeight: '1.6',
-      maxWidth: '600px',
-      margin: '0 auto',
-      padding: '20px',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      backgroundColor: '#f9f9f9',
+      lineHeight: "1.6",
+      maxWidth: "600px",
+      margin: "0 auto",
+      padding: "20px",
+      border: "1px solid #ddd",
+      borderRadius: "8px",
+      backgroundColor: "#f9f9f9",
     }}
   >
     <h1
       style={{
-        color: '#333',
-        fontSize: '24px',
-        textAlign: 'center',
-        marginBottom: '20px',
+        color: "#333",
+        fontSize: "24px",
+        textAlign: "center",
+        marginBottom: "20px",
       }}
     >
-      Спасибо за заказ! 🎉
+      🎉 Спасибо за ваш заказ! 🎉
     </h1>
-    <p style={{ fontSize: '18px', color: '#555', textAlign: 'center' }}>
-      Вы оформили заказ №<b>{orderId}</b> на сумму <b>{totalAmount} ₽</b>.
+    <p style={{ fontSize: "18px", color: "#555", textAlign: "center" }}>
+      Здравствуйте, <b>{fullName}</b>! Мы начали обработку вашего заказа.
     </p>
-    <p style={{ fontSize: '16px', color: '#555', marginTop: '20px' }}>
-      Для завершения оформления перейдите по ссылке ниже, чтобы оплатить ваш
-      заказ:
+    <p style={{ fontSize: "16px", color: "#555", marginTop: "20px" }}>
+      Курьер прибудет в течение <b>45 минут - 1,5 часа</b>. 🚴‍♂️
     </p>
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <a
-        href={paymentUrl}
-        style={{
-          display: 'inline-block',
-          padding: '10px 20px',
-          fontSize: '16px',
-          fontWeight: 'bold',
-          color: '#fff',
-          backgroundColor: '#007BFF',
-          textDecoration: 'none',
-          borderRadius: '5px',
-        }}
-      >
-        Оплатить заказ
-      </a>
-    </div>
+    <h2
+      style={{
+        fontSize: "20px",
+        color: "#333",
+        marginBottom: "10px",
+        borderBottom: "1px solid #ddd",
+        paddingBottom: "5px",
+        marginTop: "30px",
+      }}
+    >
+      📋 Детали заказа №{orderId}:
+    </h2>
+    <ul
+      style={{
+        listStyle: "none",
+        padding: 0,
+        marginBottom: "20px",
+        fontSize: "16px",
+      }}
+    >
+      <li>
+        <b>Имя:</b> {fullName}
+      </li>
+      <li>
+        <b>Email:</b> {email}
+      </li>
+      <li>
+        <b>Телефон:</b> {phone}
+      </li>
+      <li>
+        <b>Адрес доставки:</b> {address}
+      </li>
+      <li>
+        <b>Комментарий:</b> {comment}
+      </li>
+      <li>
+        <b>Сумма заказа:</b> <span style={{ color: "#28a745" }}>{totalAmount} ₽</span>
+      </li>
+    </ul>
+    <h2
+      style={{
+        fontSize: "20px",
+        color: "#333",
+        marginBottom: "10px",
+        borderBottom: "1px solid #ddd",
+        paddingBottom: "5px",
+      }}
+    >
+      🍕 Состав заказа:
+    </h2>
+    <ul style={{ fontSize: "16px", color: "#555", listStyle: "none", padding: 0 }}>
+      {items.map((item, index) => (
+        <li key={index} style={{ marginBottom: "10px" }}>
+          <b>{item.productItem.product.name}</b> — {item.quantity} шт. 🛍️
+        </li>
+      ))}
+    </ul>
     <p
       style={{
-        fontSize: '14px',
-        color: '#999',
-        marginTop: '20px',
-        textAlign: 'center',
+        fontSize: "16px",
+        color: "#555",
+        marginTop: "30px",
+        textAlign: "center",
       }}
     >
-      Если у вас возникли вопросы, пожалуйста, свяжитесь с нами по электронной
-      почте <a href="mailto:support@example.com">support@example.com</a>.
+      Если у вас возникли вопросы, свяжитесь с нами по электронной почте:
+      <a href="mailto:support@example.com" style={{ color: "#007BFF" }}>
+        {" "}
+        support@example.com
+      </a>
     </p>
     <footer
       style={{
-        marginTop: '30px',
-        borderTop: '1px solid #ddd',
-        paddingTop: '10px',
-        textAlign: 'center',
-        fontSize: '12px',
-        color: '#aaa',
+        marginTop: "30px",
+        borderTop: "1px solid #ddd",
+        paddingTop: "10px",
+        textAlign: "center",
+        fontSize: "14px",
+        color: "#aaa",
       }}
     >
+      ❤️ Спасибо, что выбрали Taxizza Pizza! ❤️ <br />
       © 2024 Taxizza Pizza. Все права защищены.
     </footer>
   </div>
