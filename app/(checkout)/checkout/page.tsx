@@ -32,20 +32,21 @@ export default function CheckoutPage() {
   const onSubmit = async (data: TCheckoutFormFields) => {
     try {
       setSubmitting(true);
-      const url = await createOrder(data);
-      toast.success('Заказ успешно оформлен! 📝 Переход на оплату... ', {
-        icon: '✅',
+      const orderUrl = await createOrder(data); // Получаем URL страницы с деталями заказа
+      toast.success("Заказ успешно оформлен! 📝 Детали заказа доступны по ссылке", {
+        icon: "✅",
       });
-      if(url) {
-        location.href = url
+  
+      if (orderUrl) {
+        location.href = orderUrl; // Редирект на страницу с информацией о заказе
       }
-      createOrder(data);
     } catch (err) {
       console.log(err);
       setSubmitting(false);
-      toast.error('Произошла ошибка при создании заказа', { icon: '❌'});
+      toast.error("Произошла ошибка при создании заказа", { icon: "❌" });
     }
   };
+  
 
   const onClickCountButton = (
     id: number,
