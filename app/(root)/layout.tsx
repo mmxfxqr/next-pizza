@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/shared/components/shared/header";
 
 export const metadata: Metadata = {
-  title: "Next Pizza",
+  title: "Taxizza Pizza",
 };
 
 export default function HomeLayout({
