@@ -1,3 +1,4 @@
+'use client'
 import { cn } from "@/shared/lib/utils";
 import React from "react";
 import { Container } from "./container";
@@ -7,6 +8,7 @@ import { ArrowRight, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
 import { CartButton } from "./cart-button";
+import { useSession, signIn } from "next-auth/react";
 interface Props {
   hasSearch?: boolean;
   hasCart?: boolean;
@@ -14,6 +16,8 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({ hasSearch = true, hasCart=true, className }) => {
+ const {data: session} = useSession()
+ console.log(session, 999)
   return (
     <header className={cn("border-b", className)}>
       <Container className="flex items-center justify-between py-8">
@@ -35,7 +39,7 @@ export const Header: React.FC<Props> = ({ hasSearch = true, hasCart=true, classN
         </div>}
         {/* Правая часть */}
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="flex items-center gap-1">
+          <Button onClick={() => signIn('github', {callbackUrl: '/', redirect: true})}  variant="outline" className="flex items-center gap-1">
             <User size={16} />
             Войти
           </Button>
