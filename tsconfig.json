@@ -23,6 +23,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "shared/services/dto/cart-dto"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "shared/services/dto/cart-dto", "@types/*.d.ts"],
   "exclude": ["node_modules"]
 }
