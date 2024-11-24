@@ -6,7 +6,6 @@ import { Title } from "../../../title";
 import { FormInput } from "../../../form";
 import { Button } from "@/shared/components/ui";
 import toast from "react-hot-toast";
-import { redirect } from "next/dist/server/api-utils";
 import { signIn } from "next-auth/react";
 
 interface Props {
