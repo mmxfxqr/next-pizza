@@ -6,7 +6,7 @@ export const formLoginSchema = z.object({
 });
 export const formRegisterSchema = formLoginSchema.merge(
     z.object({
-    fullname: z.string().min(2, {message: "Введите корректное имя"}),
+    fullName: z.string().min(2, {message: "Введите корректное имя"}),
     confirmPassword: passwordSchema,
 })).refine((data) => data.password === data.confirmPassword, {
     message: "Пароли не совпадают",
