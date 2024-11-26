@@ -3,6 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import {
+  formEditProfileSchema,
+  FormEditProfileSchema,
   FormRegisterSchema,
   formRegisterSchema,
 } from "./modals/auth-modal/forms/schemas";
@@ -13,6 +15,7 @@ import { Container } from "./container";
 import { Title } from "./title";
 import { Button } from "../ui";
 import { FormInput } from "./form";
+import { updateUserInfo } from "@/app/actions";
 
 interface Props {
   data: User;
@@ -20,7 +23,7 @@ interface Props {
 
 export const ProfileForm: React.FC<Props> = ({ data }) => {
   const form = useForm({
-    resolver: zodResolver(formRegisterSchema),
+    resolver: zodResolver(formEditProfileSchema),
     defaultValues: {
       fullName: data.fullName,
       email: data.email,
@@ -28,12 +31,12 @@ export const ProfileForm: React.FC<Props> = ({ data }) => {
       confirmPassword: "",
     },
   });
-  const onSubmit = async (data: FormRegisterSchema) => {
+  const onSubmit = async (data: FormEditProfileSchema) => {
     try {
       await updateUserInfo({
         email: data.email,
         fullName: data.fullName,
-        password: data.password,
+        password: data.password || undefined,
       });
 
       toast.error("Данные обновлены 📝", {
@@ -63,17 +66,11 @@ export const ProfileForm: React.FC<Props> = ({ data }) => {
               <FormInput name="email" label="E-Mail" required />
               <FormInput name="fullName" label="Полное имя" required />
 
-              <FormInput
-                type="password"
-                name="password"
-                label="Новый пароль"
-                required
-              />
+              <FormInput type="password" name="password" label="Новый пароль" />
               <FormInput
                 type="password"
                 name="confirmPassword"
                 label="Повторите пароль"
-                required
               />
 
               <Button

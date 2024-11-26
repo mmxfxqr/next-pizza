@@ -4,7 +4,9 @@ import { prisma } from "@/prisma/prisma-client";
 import { OrderDetailsTemplate } from "@/shared/components";
 import { TCheckoutFormFields } from "@/shared/constants";
 import { sendEmail } from "@/shared/lib";
-import { OrderStatus } from "@prisma/client";
+import { getUserSession } from "@/shared/lib/get-user-session";
+import { OrderStatus, Prisma } from "@prisma/client";
+import { hashSync } from "bcrypt";
 import { cookies } from "next/headers";
 
 export async function createOrder(data: TCheckoutFormFields) {
@@ -86,14 +88,47 @@ export async function createOrder(data: TCheckoutFormFields) {
         address: order.address,
         comment: order.comment || "Нет комментария",
         totalAmount: order.totalAmount,
-        items: JSON.parse(order.items?.toString() ?? '[]')
+        items: JSON.parse(order.items?.toString() ?? "[]"),
       })
     );
-    
+
     // Возвращаем URL страницы с информацией о заказе
     return `/order/${order.id}`;
   } catch (error) {
     console.log("[CREATE ORDER] Server error", error);
     throw new Error("Не удалось создать заказ");
+  }
+}
+export async function updateUserInfo(body: Prisma.UserUpdateInput) {
+  try {
+    const currentUser = await getUserSession();
+    if (!currentUser) {
+      throw new Error("Пользователь не найден");
+    }
+
+    const findUser = await prisma.user.findFirst({
+      where: {
+        id: Number(currentUser.id),
+      },
+    });
+
+    // Если пароль был передан, хешируем его, если нет — оставляем старый
+    const updatedPassword = body.password
+      ? hashSync(body.password as string, 10)
+      : findUser?.password;  // Оставляем старый пароль
+
+    await prisma.user.update({
+      where: {
+        id: Number(currentUser.id),
+      },
+      data: {
+        fullName: body.fullName,
+        email: body.email,
+        password: updatedPassword,  // Если пароль не передан, он не изменится
+      },
+    });
+  } catch (error) {
+    console.log("Error [UPDATE_USER_INFO]: ", error);
+    throw error;
   }
 }
