@@ -26,7 +26,7 @@ export default function CheckoutPage() {
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       email: "",
-      firstName: session?.user.name || "",
+      firstName: "",
       lastName: "",
       phone: "",
       address: "",
@@ -45,7 +45,7 @@ React.useEffect(() => {
   if(session){
     fetchUserInfo()
   }
-})
+}, [session])
   const onSubmit = async (data: TCheckoutFormFields) => {
     try {
       setSubmitting(true);

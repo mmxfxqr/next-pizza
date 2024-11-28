@@ -16,6 +16,7 @@ import { Title } from "./title";
 import { Button } from "../ui";
 import { FormInput } from "./form";
 import { updateUserInfo } from "@/app/actions";
+import Cookies from "js-cookie";
 
 interface Props {
   data: User;
@@ -49,6 +50,7 @@ export const ProfileForm: React.FC<Props> = ({ data }) => {
     }
   };
   const onClickSignOut = () => {
+    Cookies.remove("cartToken");
     signOut({
       callbackUrl: "/",
     });
