@@ -1,5 +1,5 @@
 "use client";
-import { useForm,  FormProvider } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCart } from "@/shared/hooks";
 import {
@@ -14,29 +14,49 @@ import { checkoutFormSchema, TCheckoutFormFields } from "@/shared/constants";
 import { createOrder } from "@/app/actions";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import React from "react";
+import { Api } from "@/shared/services/api-client";
 export default function CheckoutPage() {
- const [submitting, setSubmitting] = useState(false);
-  const { totalAmount, items, updateItemQuantity, removeCartItem, loading } = useCart();
+  const [submitting, setSubmitting] = useState(false);
+  const { totalAmount, items, updateItemQuantity, removeCartItem, loading } =
+    useCart();
+  const { data: session } = useSession();
   const form = useForm<TCheckoutFormFields>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       email: "",
-      firstName: "",
+      firstName: session?.user.name || "",
       lastName: "",
       phone: "",
       address: "",
       comment: "",
     },
   });
+React.useEffect(() => {
+  async function fetchUserInfo() {
+    const data = await Api.auth.getMe();
+    const [firstName, lastName] = data.fullName.split(' ');
 
+    form.setValue('firstName', firstName);
+    form.setValue('lastName', lastName);
+    form.setValue('email', data.email);
+  }
+  if(session){
+    fetchUserInfo()
+  }
+})
   const onSubmit = async (data: TCheckoutFormFields) => {
     try {
       setSubmitting(true);
       const orderUrl = await createOrder(data); // Получаем URL страницы с деталями заказа
-      toast.success("Заказ успешно оформлен! 📝 Детали заказа доступны по ссылке", {
-        icon: "✅",
-      });
-  
+      toast.success(
+        "Заказ успешно оформлен! 📝 Детали заказа доступны по ссылке",
+        {
+          icon: "✅",
+        }
+      );
+
       if (orderUrl) {
         location.href = orderUrl; // Редирект на страницу с информацией о заказе
       }
@@ -46,7 +66,6 @@ export default function CheckoutPage() {
       toast.error("Произошла ошибка при создании заказа", { icon: "❌" });
     }
   };
-  
 
   const onClickCountButton = (
     id: number,
@@ -73,12 +92,19 @@ export default function CheckoutPage() {
                 removeCartItem={removeCartItem}
                 loading={loading}
               />
-              <CheckoutPersonalData className={ loading ? "opacity-40 pointer-events-none" : ''} />
-              <CheckoutAddressFrom className={ loading ? "opacity-40 pointer-events-none" : ''} />
+              <CheckoutPersonalData
+                className={loading ? "opacity-40 pointer-events-none" : ""}
+              />
+              <CheckoutAddressFrom
+                className={loading ? "opacity-40 pointer-events-none" : ""}
+              />
             </div>
             {/* Правая часть  */}
             <div className="w-[450px]">
-              <CheckoutSidebar   totalAmount={totalAmount} loading={loading || submitting} />
+              <CheckoutSidebar
+                totalAmount={totalAmount}
+                loading={loading || submitting}
+              />
             </div>
           </div>
         </form>
@@ -86,4 +112,3 @@ export default function CheckoutPage() {
     </Container>
   );
 }
- 
