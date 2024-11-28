@@ -2,6 +2,7 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { OrderDetailsTemplate } from "@/shared/components";
+import { VerificationUserTemplate } from "@/shared/components/shared/email-templates/verification-user";
 import { TCheckoutFormFields } from "@/shared/constants";
 import { sendEmail } from "@/shared/lib";
 import { getUserSession } from "@/shared/lib/get-user-session";
@@ -79,7 +80,7 @@ export async function createOrder(data: TCheckoutFormFields) {
     });
     await sendEmail(
       data.email,
-      "Taxizza Pizza | Подтверждение заказа №" + order.id,
+      "📝 Taxizza Pizza | Подтверждение заказа №" + order.id,
       OrderDetailsTemplate({
         orderId: order.id,
         fullName: order.fullName,
@@ -115,7 +116,7 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
     // Если пароль был передан, хешируем его, если нет — оставляем старый
     const updatedPassword = body.password
       ? hashSync(body.password as string, 10)
-      : findUser?.password;  // Оставляем старый пароль
+      : findUser?.password; // Оставляем старый пароль
 
     await prisma.user.update({
       where: {
@@ -124,11 +125,50 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
       data: {
         fullName: body.fullName,
         email: body.email,
-        password: updatedPassword,  // Если пароль не передан, он не изменится
+        password: updatedPassword, // Если пароль не передан, он не изменится
       },
     });
   } catch (error) {
     console.log("Error [UPDATE_USER_INFO]: ", error);
+    throw error;
+  }
+}
+export async function registerUser(body: Prisma.UserCreateInput) {
+  try {
+    const user = await prisma.user.findFirst({
+      where: {
+        email: body.email,
+      },
+    });
+    if (user) {
+      if (!user.verified) {
+        throw new Error("Почта не подтверждена");
+      }
+      throw new Error("Пользователь уже существует");
+    }
+   const createdUser= await prisma.user.create({
+      data: {
+        fullName: body.fullName,
+        email: body.email,
+        password: hashSync(body.password, 10),
+      },
+    });
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    await prisma.verificationCode.create({
+      data: {
+        code,
+        userId: createdUser.id,
+      }
+    })
+    await sendEmail(
+      createdUser.email,
+      "📝 Taxizza Pizza | Подтверждение регистрации",
+      VerificationUserTemplate({
+       code,
+      })
+    );
+  } catch (error) {
+    console.log("Error {CREATE_USER}: ", error);
     throw error;
   }
 }
