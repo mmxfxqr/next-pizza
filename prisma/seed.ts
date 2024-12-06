@@ -14,110 +14,134 @@ async function up() {
   await prisma.product.createMany({
     data: products,
   });
+  const adminPassword = hashSync("111111", 10);
+  const adminEmail = "admin@admin.ru";
+  const currentDate = new Date();
+
+  await prisma.user.create({
+    data: {
+      fullName: "Admin Admin",
+      email: adminEmail,
+      password: adminPassword,
+      role: "ADMIN",
+      verified: currentDate, // устанавливаем текущую дату и время
+      createdAt: currentDate,
+      updateAt: currentDate,
+    },
+  });
   const pizza1 = await prisma.product.create({
     data: {
       name: "Пепперони фреш",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D612FC7B7FCA5BE822752BEE1E5.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D612FC7B7FCA5BE822752BEE1E5.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 5),
       },
-      desc: "Острая пицца с тонкими ломтиками пепперони, идеально поджаренная до хрустящей корочки."
+      desc: "Острая пицца с тонкими ломтиками пепперони, идеально поджаренная до хрустящей корочки.",
     },
   });
-  
+
   const pizza2 = await prisma.product.create({
     data: {
       name: "Сырная",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D610D2925109AB2E1C92CC5383C.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 10),
       },
-      desc: "Насыщенная сырная пицца с разнообразными сырами, которая порадует всех любителей молочных продуктов."
+      desc: "Насыщенная сырная пицца с разнообразными сырами, которая порадует всех любителей молочных продуктов.",
     },
   });
-  
+
   const pizza3 = await prisma.product.create({
     data: {
       name: "Чоризо фреш",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D61706D472F9A5D71EB94149304.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D61706D472F9A5D71EB94149304.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(10, 40),
       },
-      desc: "Пикантная пицца с испанской колбасой чоризо, которая подарит вам яркие вкусовые ощущения."
+      desc: "Пикантная пицца с испанской колбасой чоризо, которая подарит вам яркие вкусовые ощущения.",
     },
   });
-  
+
   const pizza4 = await prisma.product.create({
     data: {
       name: "Жюльен",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D6175C10773BFE36E56D48DF7E3.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 15),
       },
-      desc: "Сытная пицца с курицей и грибами, запеченная под слоем расплавленного сыра — идеальный выбор для гурманов."
+      desc: "Сытная пицца с курицей и грибами, запеченная под слоем расплавленного сыра — идеальный выбор для гурманов.",
     },
   });
-  
+
   const pizza5 = await prisma.product.create({
     data: {
       name: "Ветчина и сыр",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D60FDA22358AC33C6A44EB093A2.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 40),
       },
-      desc: "Классическая пицца с ветчиной и сыром, которая станет любимым блюдом всей семьи."
+      desc: "Классическая пицца с ветчиной и сыром, которая станет любимым блюдом всей семьи.",
     },
   });
-  
+
   const pizza6 = await prisma.product.create({
     data: {
       name: "Мясная",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D6108E3A1C9952CD3A7F39A4D02.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D6108E3A1C9952CD3A7F39A4D02.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(5, 10),
       },
-      desc: "Сочная мясная пицца с разнообразными видами мяса — для настоящих мясоедов!"
+      desc: "Сочная мясная пицца с разнообразными видами мяса — для настоящих мясоедов!",
     },
   });
-  
+
   const pizza7 = await prisma.product.create({
     data: {
       name: "Двойной цыпленок",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D614CBE0530B7234B6D7A6E5F8E.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D614CBE0530B7234B6D7A6E5F8E.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 40),
       },
-      desc: "Пицца с двойной порцией куриного мяса, которая подарит вам насыщенный вкус и удовольствие."
+      desc: "Пицца с двойной порцией куриного мяса, которая подарит вам насыщенный вкус и удовольствие.",
     },
   });
-  
+
   const pizza8 = await prisma.product.create({
     data: {
       name: "Пепперони",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D610A62D78598406363A9A8AD65.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D610A62D78598406363A9A8AD65.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(0, 40),
       },
-      desc: "Классическая пицца с пепперони, которая никогда не выйдет из моды — всегда вкусно!"
+      desc: "Классическая пицца с пепперони, которая никогда не выйдет из моды — всегда вкусно!",
     },
   });
   const pizza9 = await prisma.product.create({
     data: {
       name: "Гавайская",
-      imageUrl: "https://media.dodostatic.net/image/r:292x292/11EE7D617E9339CFB185921A343AD8FD.jpg",
+      imageUrl:
+        "https://media.dodostatic.net/image/r:292x292/11EE7D617E9339CFB185921A343AD8FD.jpg",
       categoryId: 1,
       ingredients: {
         connect: _ingredients.slice(1, 11),
       },
-      desc: "Экзотическая пицца с ананасами и ветчиной, которая сочетает сладость и соленость в каждом кусочке."
+      desc: "Экзотическая пицца с ананасами и ветчиной, которая сочетает сладость и соленость в каждом кусочке.",
     },
   });
 
@@ -137,9 +161,9 @@ async function up() {
       { productId: pizza2.id, price: 680, pizzaType: 2, size: 40 },
 
       // Пицца "Чоризо фреш"
-      { productId: pizza3.id, price:450, pizzaType: 2, size: 20 },
-      { productId: pizza3.id, price:550, pizzaType: 1, size: 30 },
-      { productId: pizza3.id, price:710, pizzaType: 1, size: 40 },
+      { productId: pizza3.id, price: 450, pizzaType: 2, size: 20 },
+      { productId: pizza3.id, price: 550, pizzaType: 1, size: 30 },
+      { productId: pizza3.id, price: 710, pizzaType: 1, size: 40 },
 
       { productId: pizza4.id, price: 350, pizzaType: 1, size: 20 },
       { productId: pizza4.id, price: 420, pizzaType: 1, size: 30 },
@@ -183,31 +207,31 @@ async function up() {
       { productId: pizza9.id, price: 750, pizzaType: 2, size: 30 },
       { productId: pizza9.id, price: 930, pizzaType: 2, size: 40 },
       // Остальные продукты
-    { productId: 1, price: 320 },
-    { productId: 2, price: 280 },
-    { productId: 3, price: 110 },
-    { productId: 4, price: 300 },
-    { productId: 5, price: 180 },
-    { productId: 6, price: 160 },
-    { productId: 7, price: 210 },
-    { productId: 8, price: 230 },
-    { productId: 9, price: 200 },
-    { productId: 10, price: 200 },
-    { productId: 11, price: 270 },
-    { productId: 12, price: 150 },
-    { productId: 13, price: 150 },
-    { productId: 14, price: 140 },
-    { productId: 15, price: 170 },
-    { productId: 16, price: 100 },
-    { productId: 17, price: 110 },
-    { productId: 18, price: 130 },
-    { productId: 19, price: 130 },
-    { productId: 20, price: 130 },
-    { productId: 21, price: 230 },
-    { productId: 22, price: 240 },
-    { productId: 23, price: 210 },
-    { productId: 24, price: 150 },
-    { productId: 25, price: 160 },
+      { productId: 1, price: 320 },
+      { productId: 2, price: 280 },
+      { productId: 3, price: 110 },
+      { productId: 4, price: 300 },
+      { productId: 5, price: 180 },
+      { productId: 6, price: 160 },
+      { productId: 7, price: 210 },
+      { productId: 8, price: 230 },
+      { productId: 9, price: 200 },
+      { productId: 10, price: 200 },
+      { productId: 11, price: 270 },
+      { productId: 12, price: 150 },
+      { productId: 13, price: 150 },
+      { productId: 14, price: 140 },
+      { productId: 15, price: 170 },
+      { productId: 16, price: 100 },
+      { productId: 17, price: 110 },
+      { productId: 18, price: 130 },
+      { productId: 19, price: 130 },
+      { productId: 20, price: 130 },
+      { productId: 21, price: 230 },
+      { productId: 22, price: 240 },
+      { productId: 23, price: 210 },
+      { productId: 24, price: 150 },
+      { productId: 25, price: 160 },
     ],
   });
   await prisma.cart.createMany({
@@ -226,13 +250,13 @@ async function up() {
   });
 
   await prisma.cartItem.create({
-    data:{
+    data: {
       productItemId: 19,
       cartId: 1,
       quantity: 2,
       ingredients: {
-        connect: [{id: 1}, {id: 2}, {id: 3}]
-      }
+        connect: [{ id: 1 }, { id: 2 }, { id: 3 }],
+      },
     },
   });
 }

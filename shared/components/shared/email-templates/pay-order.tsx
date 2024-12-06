@@ -115,9 +115,9 @@ export const OrderDetailsTemplate: React.FC<Props> = ({
       }}
     >
       Если у вас возникли вопросы, свяжитесь с нами по электронной почте:
-      <a href="mailto:support@example.com" style={{ color: "#007BFF" }}>
+      <a href="mailto:taxizza@yandex.ru" style={{ color: "#007BFF" }}>
         {" "}
-        support@example.com
+        taxizza@yandex.ru
       </a>
     </p>
     <footer
