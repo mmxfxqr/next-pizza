@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { cn } from "@/shared/lib/utils";
 import React from "react";
 import { Container } from "./container";
@@ -8,30 +8,34 @@ import { SearchInput } from "./search-input";
 import { CartButton } from "./cart-button";
 import { AuthModal } from "./modals";
 import { ProfileButton } from "./profile-button";
+import { Store } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
+import { Button } from "../ui";
 interface Props {
   hasSearch?: boolean;
   hasCart?: boolean;
   className?: string;
 }
 
-export const Header: React.FC<Props> = ({ hasSearch = true, hasCart=true, className }) => {
+export const Header: React.FC<Props> = ({
+  hasSearch = true,
+  hasCart = true,
+  className,
+}) => {
   const router = useRouter();
   const [openAuthModal, setOpenAuthModal] = React.useState(false);
   const searchParams = useSearchParams();
   React.useEffect(() => {
-    let toastMessage = '';
+    let toastMessage = "";
 
-   
-
-    if (searchParams.has('verified')) {
-      toastMessage = 'Почта успешно подтверждена!';
+    if (searchParams.has("verified")) {
+      toastMessage = "Почта успешно подтверждена!";
     }
 
     if (toastMessage) {
       setTimeout(() => {
-        router.replace('/');
+        router.replace("/");
         toast.success(toastMessage, {
           duration: 3000,
         });
@@ -54,16 +58,28 @@ export const Header: React.FC<Props> = ({ hasSearch = true, hasCart=true, classN
           </div>
         </Link>
         {/* Центральная часть */}
-        {hasSearch && <div className="mx-10 flex-1">
-          <SearchInput />
-        </div>}
+        {hasSearch && (
+          <div className="mx-10 flex-1">
+            <SearchInput />
+          </div>
+        )}
         {/* Правая часть */}
         <div className="flex items-center gap-3">
-          <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)}/>
-         <ProfileButton onClickSignIn={() => setOpenAuthModal(true)}/>
-          {hasCart && <div>
-            <CartButton />
-          </div>}
+          <Link href="/about-us">
+            <Button variant="outline" className="flex items-center gap-2">
+              <Store size={18} /> О нас
+            </Button>
+          </Link>
+          <AuthModal
+            open={openAuthModal}
+            onClose={() => setOpenAuthModal(false)}
+          />
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
+          {hasCart && (
+            <div>
+              <CartButton />
+            </div>
+          )}
         </div>
       </Container>
     </header>

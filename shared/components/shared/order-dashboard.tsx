@@ -1,5 +1,8 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
+import { Button } from "../ui";
+import { HomeIcon } from "lucide-react";
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -124,12 +127,21 @@ const OrderDashboard = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6 text-center text-black">
-        Управление заказами
-      </h1>
-      <h2 className="text-2xl font-semibold mb-4 text-center text-black">
-        Список заказов
-      </h2>
+      <div className="flex justify-between items-center mb-6">
+        <Link href="/">
+          <Button variant="outline">
+            <HomeIcon size={16} className="mr-2"/>
+            Вернуться на главную 🏠
+          </Button>
+        </Link>
+        <div className="flex flex-col flex-grow items-center">
+          <h1 className="text-4xl font-bold text-black">Управление заказами</h1>
+          <h2 className="text-2xl font-semibold text-black mt-2">
+            Список заказов
+          </h2>
+        </div>
+      </div>
+
       <table className="w-full border-collapse border border-gray-200 shadow-md">
         <thead>
           <tr className="bg-[#E08585] text-white">
@@ -141,6 +153,7 @@ const OrderDashboard = () => {
             <th className="border border-gray-200 p-4">Комментарий</th>
             <th className="border border-gray-200 p-4">Товары</th>
             <th className="border border-gray-200 p-4">Сумма</th>
+            <th className="border border-gray-200 p-4">Дата</th>
             <th className="border border-gray-200 p-4">Статус</th>
             <th className="border border-gray-200 p-4">Действия</th>
           </tr>
@@ -182,6 +195,15 @@ const OrderDashboard = () => {
               </td>
               <td className="border border-gray-200 p-4 text-center">
                 {order.totalAmount} ₽
+              </td>
+              <td className="border border-gray-200 p-4 text-center">
+                {new Date(order.createdAt).toLocaleDateString("ru-RU", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </td>
               <td className="border border-gray-200 p-4 text-center">
                 {order.status === "PENDING" && (
